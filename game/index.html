@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meridian Vault II — a heist game</title>
+<link rel="icon" href="data:,">
+<style>
+  html, body { margin: 0; min-height: 100%; background: #0b0f18; color: #e8eefc;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .wrap { width: 960px; max-width: 100vw; margin: 0 auto; padding: 12px 8px 20px; box-sizing: border-box; }
+  h1 { margin: 2px 0 10px; font-size: 22px; letter-spacing: 2px; color: #ffd34d; }
+  h1 span { color: #35e0c8; font-size: 13px; letter-spacing: 1px; }
+  #hud { display: flex; align-items: center; gap: 14px; background: #0d1320; border: 1px solid #26314a;
+    border-radius: 8px; padding: 8px 12px; font-size: 14px; flex-wrap: wrap; }
+  #hud .floor { font-weight: 700; color: #ffd34d; }
+  #hud .stat { white-space: nowrap; }
+  #hud .lives { color: #ff8a8a; letter-spacing: 2px; }
+  #hud .alarm { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+  #hud-alarm-label { font-weight: 700; font-size: 13px; min-width: 74px; }
+  #hud-alarm-bar { width: 170px; height: 14px; background: #1b2334; border: 1px solid #3d4a63; border-radius: 7px; overflow: hidden; }
+  #hud-alarm-fill { height: 100%; width: 0%; background: #37d67a; transition: width 120ms linear; }
+  #game { display: block; width: 100%; height: auto; margin-top: 10px; border: 1px solid #26314a;
+    border-radius: 8px; background: #1b2334; touch-action: none; }
+  .hints { margin-top: 10px; font-size: 13px; color: #9fb0cc; line-height: 1.6; }
+  .hints b { color: #e8eefc; }
+  #status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>MERIDIAN VAULT II <span>— a one-night heist in five floors</span></h1>
+  <div id="hud" role="status">
+    <span class="floor" id="hud-floor">Floor 1 — The Lobby</span>
+    <span class="stat" id="hud-loot">Loot 0/2</span>
+    <span class="stat" id="hud-coins">Coins 3</span>
+    <span class="stat" id="hud-emp">EMP 1</span>
+    <span class="stat" id="hud-smoke">Smoke 1</span>
+    <span class="stat lives" id="hud-lives">♥♥♥</span>
+    <span class="stat" id="hud-score">Score 0</span>
+    <span class="stat" id="hud-time">0:00</span>
+    <span class="stat" id="hud-best">Best 0</span>
+    <span class="alarm"><span id="hud-alarm-label">ALARM 0%</span><span id="hud-alarm-bar"><span id="hud-alarm-fill" style="display:block"></span></span></span>
+  </div>
+  <canvas id="game" width="960" height="600" aria-label="Meridian Vault II: cross the bank floors unseen, lift the loot, reach the helipad"></canvas>
+  <p class="hints"><b>WASD / arrows</b> move &nbsp;·&nbsp; <b>Shift</b> sprint (loud) &nbsp;·&nbsp; <b>C</b> crouch (quiet, slow) &nbsp;·&nbsp; <b>Click</b> toss a coin to distract a guard &nbsp;·&nbsp; <b>2</b> EMP &nbsp;·&nbsp; <b>3</b> smoke &nbsp;·&nbsp; <b>E</b> crack a safe &nbsp;·&nbsp; <b>P</b> pause &nbsp;·&nbsp; <b>M</b> mute<br>
+  Guards patrol with vision cones and wall cameras sweep. Dark floor is shadow — detection crawls there. Lasers blink on and off: cross them dark, or kill them with an EMP. Lift every piece of loot, then reach the green EXIT — on the last floor, the helipad. Between floors, the black market sells EMPs, smoke, lives and coins for score.</p>
+</div>
+<p id="status" role="status" aria-live="polite"></p>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
